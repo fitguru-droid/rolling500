@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/style.css">
     <title>Document</title>
+</head>
+<body>
     <div class="container">
         <h1>M3U</h1>
         <a href="./m3u/sportbalkan.m3u">MCS</a>
+        <video id="video" controls width="640" height="264"></video>
     </div>
-</head>
-<body>
-    
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        if (Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls();
+            hls.loadSource('https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u');
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u';
+            video.addEventListener('canplay', function() {
+                video.play();
+            });
+        }
+    </script>
 </body>
 </html>
