@@ -1,3 +1,4 @@
 #EXTM3U
-#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2149280,CODECS="mp4a.40.2,avc1.64001f"
+#EXT-X-TARGETDURATION:10
+#EXTINF:-1 tvg-name="RTL" tvg-logo="https://i.imgur.com/zAjr6pO.png" tvg-id="RTLCroatia.hr" group-title="Croatia",RTL
 https://d1cs5tlhj75jxe.cloudfront.net/rtl/playlist.m3u8
