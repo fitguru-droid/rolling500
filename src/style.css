@@ -1,0 +1,44 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    font-family:  monospace;
+    font-size: 5rem;
+
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+h1 {
+    animation: heartbeat 2.5s infinite;
+    color: lightblue;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 5px lightblue, 0 0 10px lightblue, 0 0 15px lightblue, 0 0 20px lightblue;
+    }
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 10px lightblue, 0 0 20px lightblue, 0 0 30px lightblue, 0 0 40px lightblue;
+    }
+}
