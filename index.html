@@ -14,20 +14,34 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        if (Hls.isSupported()) {
+        document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('video');
-            var hls = new Hls();
-            hls.loadSource('https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u');
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.play();
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u';
-            video.addEventListener('canplay', function() {
-                video.play();
-            });
-        }
+            var m3u8Url = 'https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u'; // Updated M3U8 URL
+
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                hls.loadSource(m3u8Url);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    console.log('HLS manifest loaded, starting playback');
+                    video.play();
+                });
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error('HLS.js error:', data);
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = m3u8Url;
+                video.addEventListener('canplay', function() {
+                    console.log('Native HLS loaded, starting playback');
+                    video.play();
+                });
+                video.addEventListener('error', function() {
+                    console.error('Native HLS error');
+                });
+            } else {
+                console.error('HLS not supported');
+            }
+        });
     </script>
 </body>
 </html>
