@@ -4,43 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/style.css">
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <h1>M3U</h1>
         <a href="./m3u/sportbalkan.m3u">MCS</a>
-        <video id="video" controls width="640" height="264"></video>
+        <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" data-setup='{}'>
+            <source src="https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u" type="application/x-mpegURL">
+        </video>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://vjs.zencdn.net/7.11.4/video.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-http-streaming@1.13.3/dist/videojs-http-streaming.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var video = document.getElementById('video');
-            var m3u8Url = 'https://d1cs5tlhj75jxe.cloudfront.net/rtl/playlist.m3u8'; // Sample M3U8 URL
-
-            if (Hls.isSupported()) {
-                var hls = new Hls();
-                hls.loadSource(m3u8Url);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    console.log('HLS manifest loaded, starting playback');
-                    video.play();
-                });
-                hls.on(Hls.Events.ERROR, function(event, data) {
-                    console.error('HLS.js error:', data);
-                });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = m3u8Url;
-                video.addEventListener('canplay', function() {
-                    console.log('Native HLS loaded, starting playback');
-                    video.play();
-                });
-                video.addEventListener('error', function() {
-                    console.error('Native HLS error');
-                });
-            } else {
-                console.error('HLS not supported');
-            }
+        var player = videojs('my-video');
+        player.src({
+            src: 'https://fitguru-droid.github.io/rolling500/m3u/sportbalkan.m3u',
+            type: 'application/x-mpegURL'
         });
     </script>
 </body>
