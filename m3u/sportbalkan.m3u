@@ -1,4 +1,5 @@
 #EXTM3U
+#EXT-X-VERSION:3
 #EXT-X-TARGETDURATION:10
 #EXTINF:-1 tvg-name="RTL" tvg-logo="https://i.imgur.com/zAjr6pO.png" tvg-id="RTLCroatia.hr" group-title="Croatia",RTL
 https://d1cs5tlhj75jxe.cloudfront.net/rtl/playlist.m3u8
